@@ -41,6 +41,7 @@ Eg.If one of your projects requires SQL and another project requires MariaDB
 5. COPY . . to copy all resources from the current directory on the host computer to the working directory (/app) in the image.
 
 
+
 * Dockerlize a Python Flask Application
 
 We will show, how to do write a docker file for a flask application and run a container for Flask.
@@ -50,27 +51,39 @@ Github link — https://github.com/bikramatmedium/docker/tree/main/Dockerfile/py
 
 from flask import Flask
 #importing the flask class
+
 app = Flask(__name__)
 #creating an instance of the Flask class)
 
 @app.route('/')
 #The primary url for our application)
-def hello_world():
-#This method returns Flask Dockerized)
-    return 'Flask Dockerized'
 
+def hello_world():
+
+#This method returns Flask Dockerized)
+   
+    return 'Flask Dockerized'
+    
 if __name__ == '__main__':
+   
     app.run(debug=True, host='0.0.0.0')
+
 #This statement starts the server on your local machine.)
 
 2. Create requirements.txt file
 
 click==8.0.1
+
 colorama==0.4.4
+
 Flask==2.0.1
+
 itsdangerous==2.0.1
+
 Jinja2==3.0.1
+
 MarkupSafe==2.0.1
+
 Werkzeug==2.0.1
 
 3. Create a Dockerfile that contains instructions to build the flask application.
@@ -83,10 +96,14 @@ WORKDIR /app
 COPY . /app
 # Install app dependecy
 RUN pip install -r requirements.txt
+
 #Expose Nginx Port
+
 EXPOSE 5000
 #Start NginxService
+
 ENTRYPOINT ["python"]
+
 CMD ["app.py"]
 
 Now we have three files dockerfile, app.py, and requirement.txt files.
